@@ -8,18 +8,20 @@ import cors from "cors";
 const app = express();
 app.use(express.json()); // for parsing JSON bodies
 app.use(express.urlencoded({ extended: true })); // for parsing form data
-app.use("/books", booksRoute);
 
 // Option 1 : All the Origins with default of cors(*)
 // app.use(cors());
 // Option 2: Allow Customs Origins
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
 );
+
+app.use("/books", booksRoute);
 
 mongoose
   .connect(mongoDBURL)
