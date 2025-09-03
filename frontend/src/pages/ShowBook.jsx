@@ -5,7 +5,7 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
 export default function ShowBook() {
-  const [book, setBook] = useState(null);   // start with null instead of {}
+  const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
@@ -21,48 +21,62 @@ export default function ShowBook() {
         console.log(err);
         setLoading(false);
       });
-  }, [id]);   // depends on id
+  }, [id]);
 
   return (
-    <div className="p-4">
+    <div className="p-6 max-w-3xl mx-auto">
       <BackButton />
-      <h1 className="text-3xl my-4">Show Book</h1>
+      <h1 className="text-3xl font-semibold my-6 text-gray-800">Show Book</h1>
 
       {loading ? (
         <Spinner />
       ) : (
-        book && (   // only render if book exists
-          <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
-            <div className="my-4">
-              <span className="text-xl mr-4 text-gray-500">Id</span>
-              <span>{book._id}</span>
+        book && (
+          <div className="flex flex-col bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-md p-6 space-y-4">
+            {/* ID */}
+            <div className="flex justify-between">
+              <span className="font-semibold text-gray-500">ID</span>
+              <span className="text-gray-800 dark:text-gray-200">{book._id}</span>
             </div>
-            <div className="my-4">
-              <span className="text-xl mr-4 text-gray-500">Title</span>
-              <span>{book.title}</span>
+
+            {/* Title */}
+            <div className="flex justify-between">
+              <span className="font-semibold text-gray-500">Title</span>
+              <span className="text-gray-800 dark:text-gray-200">{book.title}</span>
             </div>
-            <div className="my-4">
-              <span className="text-xl mr-4 text-gray-500">Author</span>
-              <span>{book.author}</span>
+
+            {/* Author */}
+            <div className="flex justify-between">
+              <span className="font-semibold text-gray-500">Author</span>
+              <span className="text-gray-800 dark:text-gray-200">{book.author}</span>
             </div>
-            <div className="my-4">
-              <span className="text-xl mr-4 text-gray-500">Publish Year</span>
-              <span>{book.publishYear}</span>
+
+            {/* Publish Year */}
+            <div className="flex justify-between">
+              <span className="font-semibold text-gray-500">Publish Year</span>
+              <span className="text-gray-800 dark:text-gray-200">{book.publishYear}</span>
             </div>
-            <div className="my-4">
-              <span className="text-xl mr-4 text-gray-500">Create Time</span>
-              <span>
-                {book.createdAt
-                  ? new Date(book.createdAt).toLocaleString()
-                  : 'N/A'}
+
+            {/* Created At */}
+            <div className="flex justify-between">
+              <span className="font-semibold text-gray-500">Created At</span>
+              <span className="text-gray-800 dark:text-gray-200">
+                {book.createdAt ? new Date(book.createdAt).toLocaleString() : 'N/A'}
               </span>
             </div>
-            <div className="my-4">
-              <span className="text-xl mr-4 text-gray-500">Update Time</span>
-              <span>
-                {book.updatedAt
-                  ? new Date(book.updatedAt).toLocaleString()
-                  : 'N/A'}
+
+            {/* Updated At */}
+            <div className="flex justify-between">
+              <span className="font-semibold text-gray-500">Updated At</span>
+              <span className="text-gray-800 dark:text-gray-200">
+                {book.updatedAt ? new Date(book.updatedAt).toLocaleString() : 'N/A'}
+              </span>
+            </div>
+
+            {/* Optional Brand Badge */}
+            <div className="mt-4">
+              <span className="inline-block bg-[#E4004B] text-white text-sm font-semibold px-3 py-1 rounded-full">
+                Book Info
               </span>
             </div>
           </div>

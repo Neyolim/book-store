@@ -2,6 +2,9 @@ import React from "react";
 
 export default function Spinner() {
   return (
-    <div className="animate-ping w-16 h-16 m-8 rounded-full bg-sky-600"></div>
-  )
+    <div className="flex justify-center" style={{ marginTop: '10vh' }}>
+      <div className="w-12 h-12 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+    </div>
+  );
 }
+
